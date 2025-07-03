@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Ask a Question
+    url: https://github.com/code4history/BeatBox/discussions/new?category=q-a
+    about: Ask questions and discuss with other community members
+  - name: Code for History Website
+    url: https://code4history.dev/
+    about: Visit our website for more information about our projects

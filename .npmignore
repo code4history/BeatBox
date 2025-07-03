@@ -1,0 +1,46 @@
+# Source files (built files are in dist/)
+src/
+*.ts
+!dist/*.d.ts
+
+# Test files
+tests/
+vitest.config.ts
+coverage/
+
+# E2E test files
+e2e/
+playwright*.config.ts
+e2e-test.html
+playwright-report/
+test-results/
+
+# Development files
+.eslintrc*
+eslint.config.mjs
+.prettierrc
+tsconfig.json
+tsconfig.build.json
+vite.config.ts
+
+# Documentation
+*.md
+!README.md
+!README.ja.md
+docs/
+
+# Git and IDE
+.git*
+.vscode/
+.idea/
+
+# CI/CD
+.github/
+
+# Scripts
+scripts/
+
+# Build artifacts
+*.log
+*.tgz
+.DS_Store

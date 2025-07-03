@@ -1,0 +1,63 @@
+{
+  "name": "@c4h/beatbox",
+  "version": "0.1.0",
+  "description": "Mapbox scheme URL parser and MVT configuration translator",
+  "type": "module",
+  "main": "./dist/beatbox.cjs",
+  "module": "./dist/beatbox.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/beatbox.js",
+      "require": "./dist/beatbox.cjs"
+    }
+  },
+  "files": [
+    "dist",
+    "src",
+    "README.md",
+    "README.ja.md"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "npm run typecheck && cross-env BUILD_MODE=package vite build",
+    "typecheck": "tsc --noEmit --allowImportingTsExtensions",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "coverage": "vitest run --coverage",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:ci": "playwright test --config=playwright-ci.config.ts",
+    "lint": "eslint src tests",
+    "prepublishOnly": "npm run lint && npm run typecheck && npm run test && npm run build",
+    "version:bump": "node scripts/bump-version.js",
+    "version:sync": "node scripts/sync-version.js",
+    "publish:npm": "node scripts/publish-npm.js",
+    "publish:npm:dry": "node scripts/publish-npm.js --dry-run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/code4history/BeatBox.git"
+  },
+  "author": "Code for History",
+  "license": "MIT",
+  "keywords": ["mapbox", "mvt", "vector-tiles", "url-parser", "scheme", "style", "tiles"],
+  "devDependencies": {
+    "@eslint/js": "^9.17.0",
+    "@playwright/test": "^1.53.1",
+    "@types/node": "^22.10.2",
+    "typescript-eslint": "^8.35.1",
+    "@vitest/coverage-v8": "^3.2.4",
+    "cross-env": "^7.0.3",
+    "eslint": "^9.17.0",
+    "eslint-config-prettier": "^9.1.0",
+    "jsdom": "^25.0.1",
+    "prettier": "^3.4.2",
+    "typescript": "^5.7.2",
+    "vite": "^6.3.5",
+    "vite-plugin-dts": "^4.4.0",
+    "vitest": "^3.2.4"
+  },
+  "packageManager": "pnpm@10.12.4"
+}

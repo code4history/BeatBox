@@ -1,0 +1,44 @@
+version: 2
+updates:
+  # Enable version updates for npm
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "04:00"
+    open-pull-requests-limit: 10
+    groups:
+      # Group all ESLint-related updates
+      eslint:
+        patterns:
+          - "eslint*"
+          - "@eslint/*"
+          - "typescript-eslint"
+      # Group all testing-related updates
+      testing:
+        patterns:
+          - "vitest*"
+          - "@vitest/*"
+          - "@playwright/*"
+          - "jsdom"
+      # Group all build tool updates
+      build-tools:
+        patterns:
+          - "vite*"
+          - "typescript"
+          - "cross-env"
+    # Ignore major versions for certain packages
+    ignore:
+      - dependency-name: "typescript"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "vite"
+        update-types: ["version-update:semver-major"]
+
+  # Enable version updates for GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "04:00"
