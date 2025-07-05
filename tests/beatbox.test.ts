@@ -77,6 +77,26 @@ describe('BeatBox', () => {
       });
     });
 
+    it('should parse composite tileset URLs', () => {
+      const beatbox = new BeatBox();
+      const result = beatbox.parseMapboxUrl('mapbox://mapbox.mapbox-streets-v8,mapbox.mapbox-terrain-v2');
+      
+      expect(result).toEqual({
+        type: 'tiles',
+        id: 'mapbox.mapbox-streets-v8,mapbox.mapbox-terrain-v2'
+      });
+    });
+
+    it('should parse composite tileset URLs with tiles prefix', () => {
+      const beatbox = new BeatBox();
+      const result = beatbox.parseMapboxUrl('mapbox://tiles/mapbox.mapbox-streets-v8,mapbox.mapbox-terrain-v2');
+      
+      expect(result).toEqual({
+        type: 'tiles',
+        id: 'mapbox.mapbox-streets-v8,mapbox.mapbox-terrain-v2'
+      });
+    });
+
     it('should return unknown type for invalid URLs', () => {
       const beatbox = new BeatBox();
       
@@ -133,6 +153,20 @@ describe('BeatBox', () => {
       const result = beatbox.toHttpUrl('mapbox://tiles/mapbox.satellite/1/0/0@2x.png');
       
       expect(result).toBe('https://api.mapbox.com/v4/mapbox.satellite/1/0/0@2x.png?access_token=test-token');
+    });
+
+    it('should convert composite tileset URLs', () => {
+      const beatbox = new BeatBox({ accessToken: 'test-token' });
+      const result = beatbox.toHttpUrl('mapbox://mapbox.mapbox-streets-v8,mapbox.mapbox-terrain-v2');
+      
+      expect(result).toBe('https://api.mapbox.com/v4/mapbox.mapbox-streets-v8,mapbox.mapbox-terrain-v2.json?access_token=test-token');
+    });
+
+    it('should convert composite tileset URLs with tiles prefix', () => {
+      const beatbox = new BeatBox({ accessToken: 'test-token' });
+      const result = beatbox.toHttpUrl('mapbox://tiles/mapbox.mapbox-streets-v8,mapbox.mapbox-terrain-v2');
+      
+      expect(result).toBe('https://api.mapbox.com/v4/mapbox.mapbox-streets-v8,mapbox.mapbox-terrain-v2.json?access_token=test-token');
     });
 
     it('should use custom API URL', () => {

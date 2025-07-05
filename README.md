@@ -11,6 +11,7 @@ Mapbox scheme URL parser and MVT configuration translator for JavaScript.
 - Support for various Mapbox resource types:
   - Styles: `mapbox://styles/{username}/{style_id}`
   - Tiles: `mapbox://tiles/{tileset_id}/{z}/{x}/{y}`
+  - Composite tiles: `mapbox://mapbox.mapbox-streets-v8,mapbox.mapbox-terrain-v2`
   - Fonts: `mapbox://fonts/{username}/{font_stack}/{range}`
   - Sprites: `mapbox://sprites/{username}/{style_id}`
 
@@ -42,6 +43,11 @@ const beatbox = new BeatBox({
 const httpUrl = beatbox.toHttpUrl('mapbox://styles/mapbox/streets-v11');
 console.log(httpUrl);
 // → https://api.mapbox.com/styles/v1/mapbox/streets-v11?access_token=...
+
+// Convert composite tileset URLs
+const compositeUrl = beatbox.toHttpUrl('mapbox://mapbox.mapbox-streets-v8,mapbox.mapbox-terrain-v2');
+console.log(compositeUrl);
+// → https://api.mapbox.com/v4/mapbox.mapbox-streets-v8,mapbox.mapbox-terrain-v2.json?access_token=...
 
 // Parse and translate a complete style configuration
 const styleUrl = 'mapbox://styles/moritoru/ck3xqi0hh1pob1cqpanp3jxxo';

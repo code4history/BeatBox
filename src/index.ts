@@ -109,6 +109,17 @@ export class BeatBox {
       };
     }
 
+    // Check for composite tileset (comma-separated IDs)
+    // This handles URLs like mapbox://mapbox.mapbox-streets-v8,mapbox.mapbox-terrain-v2
+    if (path.includes(',')) {
+      // Remove any mapbox:// prefix if it exists
+      const cleanPath = path.startsWith('mapbox://') ? path.slice(9) : path;
+      return {
+        type: 'tiles',
+        id: cleanPath
+      };
+    }
+
     return result;
   }
 
@@ -149,6 +160,12 @@ export class BeatBox {
             const format = templateMatch[2] ? templateMatch[2].slice(1) : 'mvt';
             return `${this.apiUrl}/v4/${id}/{z}/{x}/{y}.${format}${token}`;
           }
+        }
+        // Handle composite tileset URLs without tiles/ prefix
+        // e.g., mapbox://mapbox.mapbox-streets-v8,mapbox.mapbox-terrain-v2
+        if (mapboxUrl.startsWith('mapbox://') && mapboxUrl.includes(',')) {
+          const id = mapboxUrl.slice(9); // Remove 'mapbox://'
+          return `${this.apiUrl}/v4/${id}.json${token}`;
         }
         return mapboxUrl; // Return original if cannot parse
     }

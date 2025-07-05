@@ -11,6 +11,7 @@ JavaScript用のMapboxスキームURLパーサーおよびMVT設定トランス�
 - 各種Mapboxリソースタイプのサポート：
   - スタイル: `mapbox://styles/{username}/{style_id}`
   - タイル: `mapbox://tiles/{tileset_id}/{z}/{x}/{y}`
+  - 複合タイル: `mapbox://mapbox.mapbox-streets-v8,mapbox.mapbox-terrain-v2`
   - フォント: `mapbox://fonts/{username}/{font_stack}/{range}`
   - スプライト: `mapbox://sprites/{username}/{style_id}`
 
@@ -42,6 +43,11 @@ const beatbox = new BeatBox({
 const httpUrl = beatbox.toHttpUrl('mapbox://styles/mapbox/streets-v11');
 console.log(httpUrl);
 // → https://api.mapbox.com/styles/v1/mapbox/streets-v11?access_token=...
+
+// 複合タイルセットURLの変換
+const compositeUrl = beatbox.toHttpUrl('mapbox://mapbox.mapbox-streets-v8,mapbox.mapbox-terrain-v2');
+console.log(compositeUrl);
+// → https://api.mapbox.com/v4/mapbox.mapbox-streets-v8,mapbox.mapbox-terrain-v2.json?access_token=...
 
 // 完全なスタイル設定を解析して変換
 const styleUrl = 'mapbox://styles/moritoru/ck3xqi0hh1pob1cqpanp3jxxo';
