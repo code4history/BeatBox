@@ -1,6 +1,6 @@
 {
   "name": "@c4h/beatbox",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Mapbox scheme URL parser and MVT configuration translator",
   "type": "module",
   "main": "./dist/beatbox.cjs",
@@ -42,7 +42,15 @@
   },
   "author": "Code for History",
   "license": "MIT",
-  "keywords": ["mapbox", "mvt", "vector-tiles", "url-parser", "scheme", "style", "tiles"],
+  "keywords": [
+    "mapbox",
+    "mvt",
+    "vector-tiles",
+    "url-parser",
+    "scheme",
+    "style",
+    "tiles"
+  ],
   "devDependencies": {
     "@eslint/js": "^9.17.0",
     "@playwright/test": "^1.53.1",
